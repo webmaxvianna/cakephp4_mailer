@@ -222,6 +222,25 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        // Nova configuração de Email Transport
+        'email_transport' => [
+            'className' => 'Smtp',
+            /*
+             * The keys host, port, timeout, username, password, client and tls
+             * are used in SMTP transports
+             */
+            'host' => 'smtp.servidor.com.br',
+            'port' => 587,
+            'timeout' => 30,
+            /*
+             * It is recommended to set these options through your environment or app_local.php
+             */
+            //'username' => null,
+            //'password' => null,
+            'client' => null,
+            'tls' => false,
+            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+        ],
     ],
 
     /*
@@ -237,6 +256,16 @@ return [
         'default' => [
             'transport' => 'default',
             'from' => 'you@localhost',
+            /*
+             * Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.
+             */
+            //'charset' => 'utf-8',
+            //'headerCharset' => 'utf-8',
+        ],
+        // Nova configuração de Email Profile
+        'email_profile' => [
+            'transport' => 'email_transport',
+            'from' => ['email@email.com.br' => 'Meu Email'],
             /*
              * Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.
              */
